@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 02-04 capstone commands and stubs
-last_updated: "2026-03-06T12:43:56.450Z"
+stopped_at: Completed 02-02 core navigation command files
+last_updated: "2026-03-06T12:45:42.295Z"
 last_activity: 2026-03-06 — Completed 01-02 README.md
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
   percent: 13
 ---
 
@@ -53,6 +53,8 @@ Progress: [██░░░░░░░░] 13%
 | Phase 01-plugin-scaffold P01 | 2 | 2 tasks | 4 files |
 | Phase 02-professor-agent-and-core-commands P01 | 3 | 1 tasks | 1 files |
 | Phase 02 P04 | 2 | 2 tasks | 4 files |
+| Phase 02-professor-agent-and-core-commands P03 | 4 | 2 tasks | 4 files |
+| Phase 02-professor-agent-and-core-commands P02 | 8 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -77,6 +79,10 @@ Recent decisions affecting current work:
 - [Phase 02-professor-agent-and-core-commands]: professor:new-topic proposes syllabus inline in chat before writing files — user confirms first
 - [Phase 02]: capstone-review.md gates explicitly on all sections Done before proceeding — matches SKILL.md spec
 - [Phase 02]: Stub files include Phase number in coming-soon message (Phase 3 for note, Phase 5 for export)
+- [Phase 02-professor-agent-and-core-commands]: hint.md defers layer tracking to agent conversation history — no layer rules in the command file
+- [Phase 02-professor-agent-and-core-commands]: stuck.md and quiz.md open with AskUserQuestion per locked decisions in 02-CONTEXT.md
+- [Phase 02-professor-agent-and-core-commands]: Command files are thin routing stubs — all Socratic behavior rules remain exclusively in agents/professor.md
+- [Phase 02-professor-agent-and-core-commands]: new-topic inline syllabus proposal confirmed before COURSE.md and CAPSTONE.md are written simultaneously
 
 ### Pending Todos
 
@@ -89,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-06T12:43:56.449Z
-Stopped at: Completed 02-04 capstone commands and stubs
+Last session: 2026-03-06T12:45:42.293Z
+Stopped at: Completed 02-02 core navigation command files
 Resume file: None
