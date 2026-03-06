@@ -90,7 +90,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 04-01-PLAN.md — Implement PreCompact hook with token warning display and COURSE.md session-state auto-save
+- [x] 04-01-PLAN.md — Implement PreCompact hook with token warning display and COURSE.md session-state auto-save
 
 ### Phase 5: Export Feature
 **Goal**: Users can push their entire learning journey — notes, answers, and summaries — to Notion or Obsidian for long-term retention
@@ -118,7 +118,7 @@ Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6
 | 1b. CLI Auto-Setup | 1/1 | Complete   | 2026-03-06 |
 | 2. Professor Agent and Core Commands | 4/4 | Complete   | 2026-03-06 |
 | 3. Notes Feature | 1/1 | Complete    | 2026-03-06 |
-| 4. PreCompact Hook | 0/1 | Not started | - |
+| 4. PreCompact Hook | 1/1 | Complete   | 2026-03-06 |
 | 5. Export Feature | 0/3 | Not started | - |
 | 6. agent able to get and manage context through all course | 0/0 | Not started | - |
 
