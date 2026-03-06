@@ -46,7 +46,7 @@ Requirements for milestone v1.0. Each maps to roadmap phases.
 ### Export
 
 - [ ] **EXP-01**: `professor:export` sends lecture notes + user answers + NOTES.md to Notion via MCP
-- [ ] **EXP-02**: `professor:export` sends course content to Obsidian via Obsidian MCP server
+- [x] **EXP-02**: `professor:export` sends course content to Obsidian via Obsidian MCP server
 - [x] **EXP-03**: User can choose export destination (Notion or Obsidian) when running `professor:export`
 
 ## Future Requirements
@@ -97,7 +97,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HOK-02 | Phase 4 | Complete |
 | CMD-14 | Phase 5 | Complete |
 | EXP-01 | Phase 5 | Pending |
-| EXP-02 | Phase 5 | Pending |
+| EXP-02 | Phase 5 | Complete |
 | EXP-03 | Phase 5 | Complete |
 
 **Coverage:**

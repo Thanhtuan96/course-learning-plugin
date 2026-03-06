@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Professor Agent and Core Commands** - Package professor-skill-v3 as a Claude Code agent and wire all 12 course commands (completed 2026-03-06)
 - [x] **Phase 3: Notes Feature** - Add NOTES.md per-course file and the professor:note command (completed 2026-03-06)
 - [x] **Phase 4: PreCompact Hook** - Token warning and auto-save session state before context compression (completed 2026-03-06)
-- [ ] **Phase 5: Export Feature** - Notion and Obsidian export via MCP with user destination choice
+- [x] **Phase 5: Export Feature** - Notion and Obsidian export via MCP with user destination choice (completed 2026-03-06)
 
 ## Phase Details
 
@@ -120,7 +120,7 @@ Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6
 | 2. Professor Agent and Core Commands | 4/4 | Complete   | 2026-03-06 |
 | 3. Notes Feature | 1/1 | Complete    | 2026-03-06 |
 | 4. PreCompact Hook | 1/1 | Complete    | 2026-03-06 |
-| 5. Export Feature | 2/3 | In Progress | 2026-03-07 |
+| 5. Export Feature | 3/3 | Complete   | 2026-03-06 |
 | 6. Course Archive and Context | 0/1 | Not started | - |
 
 ### Phase 6: Course Archive and Context Management
