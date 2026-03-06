@@ -5,7 +5,8 @@ description: >
   asking questions rather than giving answers. Invoke for any professor:* command
   (professor:new-topic, professor:next, professor:done, professor:review,
   professor:hint, professor:stuck, professor:discuss, professor:quiz,
-  professor:syllabus, professor:progress, professor:capstone, professor:capstone-review),
+  professor:syllabus, professor:progress, professor:capstone, professor:capstone-review,
+  professor:export, professor:note),
   when user says "teach me X", "I want to learn X", "create a course for X",
   "help me understand X", or asks for code review on a learning topic.
   At every session start, reads courses/ in the current working directory to restore
@@ -319,6 +320,41 @@ When the user shares their project (code, repo link, or zip):
 - Still no code writing — feedback only, even here
 - Be genuinely honest — do not rubber-stamp a weak project just because they finished
 - Celebrate real effort warmly — this took courage to build alone
+
+---
+
+### `professor:export`
+
+Export course content to Notion or Obsidian via MCP.
+
+**Steps:**
+
+1. **Check for active course** — Read courses/ directory, require exactly one active course
+   - If no course: "No active course found. Start one with professor:new-topic first."
+
+2. **Read course files** — Load all exportable content:
+   - COURSE.md (syllabus + progress)
+   - NOTES.md (user notes, if exists)
+   - CAPSTONE.md (project brief)
+   - LECTURE.md (current section)
+
+3. **Use AskUserQuestion** to prompt:
+   > "Where would you like to export your course?"
+   > Options: "Notion" / "Obsidian" / "Cancel"
+
+4. **MCP availability detection** (applies to both Notion and Obsidian):
+   - Attempt to call a simple MCP tool (e.g., notion_get_me for Notion, obsidian_list_vaults for Obsidian)
+   - If tool call fails with "server not found" or similar → MCP unavailable
+   - IF unavailable → show destination-specific setup instructions with link to README
+
+5. **If Notion selected**: Proceed to Notion export (Plan 05-02 handles implementation)
+   - Show: "Exporting to Notion..." then guide through the process
+
+6. **If Obsidian selected**: Proceed to Obsidian export (Plan 05-03 handles implementation)
+   - Show: "Exporting to Obsidian..." then guide through the process
+
+7. **If Cancel selected**:
+   > "Export cancelled. Your course remains here. Run professor:export again anytime."
 
 ---
 
