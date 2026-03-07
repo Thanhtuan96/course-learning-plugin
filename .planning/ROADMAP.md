@@ -127,7 +127,7 @@ Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7
 | 5. Export Feature | 3/3 | Complete    | 2026-03-06 |
 | 6. Course Archive and Context | 1/1 | Complete    | 2026-03-07 |
 | 7. Git Worktree Courses | 1/1 | Complete    | 2026-03-07 |
-| 8. Auto-create Exercise Files | 1/1 | Complete   | 2026-03-08 |
+| 8. Auto-create Exercise Files | 1/1 | Complete    | 2026-03-07 |
 
 ### Phase 6: Course Archive and Context Management
 
@@ -167,7 +167,7 @@ Plans:
 **Goal:** Automatically create exercise files when professor:next is called, instead of making users create files manually. Exercise files are templates with comments, not working code.
 **Requirements**: EXER-01, EXER-02, EXER-03, EXER-04
 **Depends on:** Phase 7
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 **Status:** Complete (2026-03-08)
 
 Plans:
