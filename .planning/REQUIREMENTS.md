@@ -1,6 +1,7 @@
 # Requirements: Course Learning Plugin
 
 **Defined:** 2026-03-05
+**Updated:** 2026-03-08
 **Core Value:** The learner builds real understanding by doing — not by reading Claude's code.
 
 ## v1.0 Requirements
@@ -49,6 +50,13 @@ Requirements for milestone v1.0. Each maps to roadmap phases.
 - [x] **EXP-02**: `professor:export` sends course content to Obsidian via Obsidian MCP server
 - [x] **EXP-03**: User can choose export destination (Notion or Obsidian) when running `professor:export`
 
+### Agent Support (Phase 9)
+
+- [ ] **AGENT-01**: MCP server implementation with @modelcontextprotocol/sdk
+- [ ] **AGENT-02**: Core command tools (new-topic, next, done, progress, syllabus) as MCP tools
+- [ ] **AGENT-03**: Cross-agent configuration documented for Cursor and VS Code
+- [ ] **AGENT-04**: Agent detection via environment variables for different AI agents
+
 ## v1.1 Requirements
 
 Requirements for milestone v1.1 - Git Worktree Courses.
@@ -81,6 +89,44 @@ Requirements for milestone v1.1 - Git Worktree Courses.
 - [ ] **CMD-16**: `professor:archive` works with worktree structure (copies files, removes worktree)
 - [ ] **CMD-17**: Session restoration detects worktree-based courses
 
+## v2.0 Requirements
+
+Requirements for milestone v2.0 - Local Web UI.
+
+### Web Backend
+
+- [ ] **WEB-01**: Express server runs on configurable port (default 3000)
+- [ ] **WEB-02**: `/api/courses` returns list of all courses with slug, name, lastActive
+- [ ] **WEB-03**: `/api/courses/:slug/:file` returns COURSE.md, LECTURE.md, NOTES.md, CAPSTONE.md content
+- [ ] **WEB-04**: `/api/chat` accepts messages and streams Claude responses via Server-Sent Events (SSE)
+- [ ] **WEB-05**: Chat API loads system prompt from `agents/professor.md` for behavioral consistency
+- [ ] **WEB-06**: Chat API builds course context from COURSE.md and LECTURE.md
+- [ ] **WEB-07**: WebSocket server broadcasts lecture updates when professor:next runs
+- [ ] **WEB-08**: `/api/notify` endpoint triggers WebSocket broadcast to all connected clients
+
+### Web Frontend
+
+- [ ] **WEB-09**: React client displays split-pane layout (lecture panel left, chat panel right)
+- [ ] **WEB-10**: LecturePanel renders LECTURE.md with markdown (marked) and syntax highlighting
+- [ ] **WEB-11**: LecturePanel auto-refreshes when WebSocket receives lecture-updated event
+- [ ] **WEB-12**: ChatPanel streams Claude responses character-by-character via SSE
+- [ ] **WEB-13**: ChatPanel displays context-aware command pills that change based on learning phase
+- [ ] **WEB-14**: Command pills: idle phase shows `professor:new-topic`, lecture shows `professor:hint/review/quiz`, exercise shows `professor:hint/stuck/review`, review shows `professor:done/hint`
+- [ ] **WEB-15**: Course selector dropdown in top bar to switch between courses
+- [ ] **WEB-16**: Progress indicator shows current course name and last active timestamp
+
+### Integration
+
+- [ ] **WEB-17**: `bin/cli.js` has `web` command to launch Express server
+- [ ] **WEB-18**: `npx course-professor web [port]` starts web UI on specified port
+- [ ] **WEB-19**: Web UI reads/writes same `courses/` directory as CLI
+- [ ] **WEB-20**: Production build: `npm run build` creates optimized React bundle
+- [ ] **WEB-21**: Production mode: Express serves static React build from `client/dist/`
+
+### Security
+
+- [ ] **WEB-22**: All markdown rendered in browser is sanitized with DOMPurify to prevent XSS
+
 ## Future Requirements
 
 ### Syllabus Creation
@@ -103,6 +149,9 @@ Requirements for milestone v1.1 - Git Worktree Courses.
 | Worktree push to remote | User controls their git workflow |
 | Multiple courses per worktree | One tech per worktree keeps it simple |
 | Worktree branch management | Main branch only for learning |
+| Mobile-responsive UI | Local web UI is desktop-focused for v2.0 |
+| User authentication | Single-user local app, no auth needed |
+| Cloud hosting | Local web only for v2.0 |
 
 ## Traceability
 
@@ -150,11 +199,34 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CMD-15 | Phase 7 | Pending |
 | CMD-16 | Phase 7 | Pending |
 | CMD-17 | Phase 7 | Pending |
+| WEB-01 | Phase 9 | Pending |
+| WEB-02 | Phase 9 | Pending |
+| WEB-03 | Phase 9 | Pending |
+| WEB-04 | Phase 9 | Pending |
+| WEB-05 | Phase 9 | Pending |
+| WEB-06 | Phase 9 | Pending |
+| WEB-07 | Phase 9 | Pending |
+| WEB-08 | Phase 9 | Pending |
+| WEB-09 | Phase 10 | Pending |
+| WEB-10 | Phase 10 | Pending |
+| WEB-11 | Phase 10 | Pending |
+| WEB-12 | Phase 10 | Pending |
+| WEB-13 | Phase 10 | Pending |
+| WEB-14 | Phase 10 | Pending |
+| WEB-15 | Phase 10 | Pending |
+| WEB-16 | Phase 10 | Pending |
+| WEB-17 | Phase 11 | Pending |
+| WEB-18 | Phase 11 | Pending |
+| WEB-19 | Phase 11 | Pending |
+| WEB-20 | Phase 11 | Pending |
+| WEB-21 | Phase 11 | Pending |
+| WEB-22 | Phase 10 | Pending |
 
 **Coverage:**
 - v1.0 requirements: 24 total
 - v1.1 requirements: 16 total
-- Mapped to phases: 40
+- v2.0 requirements: 22 total
+- Mapped to phases: 78
 - Unmapped: 0 ✓
 
 ---

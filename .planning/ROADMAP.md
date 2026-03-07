@@ -21,7 +21,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: PreCompact Hook** - Token warning and auto-save session state before context compression (completed 2026-03-06)
 - [x] **Phase 5: Export Feature** - Notion and Obsidian export via MCP with user destination choice (completed 2026-03-06)
 - [x] **Phase 6: Course Archive and Context Management** - Archive completed courses preserving learning context (completed 2026-03-07)
-- [ ] **Phase 7: Git Worktree Courses** - Each technology learned = separate git worktree
+- [x] **Phase 8: Auto-create Exercise Files** - Automatically create exercise files when professor:next is called (completed 2026-03-08)
+- [ ] **Phase 9: Backend Foundation** - Express server with course API, chat API (SSE), WebSocket server
+- [ ] **Phase 10: Client Components** - React split-pane UI with LecturePanel, ChatPanel, command pills
+- [ ] **Phase 11: Integration** - CLI web command, production build, static file serving
 
 ## Phase Details
 
@@ -173,32 +176,73 @@ Plans:
 Plans:
 - [x] 08-01-PLAN.md — Auto-create exercise files on professor:next
 
-### Phase 9: support for another ai agent (cursor, google antigravity, etc)
+### Phase 9: Backend Foundation
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Express server running with working course API, chat API (SSE), and WebSocket server for real-time lecture updates.
+
 **Depends on:** Phase 8
-**Plans:** 0 plans
+
+**Requirements:** WEB-01, WEB-02, WEB-03, WEB-04, WEB-05, WEB-06, WEB-07, WEB-08
+
+**Success Criteria** (what must be TRUE):
+1. Express server starts on configurable port (default 3000) when `npm run web` is executed
+2. GET `/api/courses` returns JSON array of courses with slug, name, and lastActive fields
+3. GET `/api/courses/:slug/:file` returns raw content of COURSE.md, LECTURE.md, NOTES.md, or CAPSTONE.md
+4. POST `/api/chat` with message accepts request and initiates SSE stream to client
+5. Chat API loads behavioral rules from `agents/professor.md` for Socratic consistency
+6. Chat API includes relevant course context (current lecture, progress) in Claude requests
+7. WebSocket server runs alongside HTTP server and accepts client connections
+8. POST `/api/notify` broadcasts "lecture-updated" event to all connected WebSocket clients
+
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 9 to break down)
+- [ ] 09-01-PLAN.md — Implement Express backend with course API, chat API (SSE), and WebSocket server
 
-### Phase 10: improve and separate @agents/ into specific agent fields (ex: math, marketing, sales, coaching, bookkeeper, etc) or researcher agent - let them focus on one job and do well, and they can use tools or other agents
+---
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+### Phase 10: Client Components
+
+**Goal:** React client with split-pane layout, lecture panel with markdown rendering, chat panel with streaming and context-aware command pills.
+
 **Depends on:** Phase 9
-**Plans:** 0 plans
+
+**Requirements:** WEB-09, WEB-10, WEB-11, WEB-12, WEB-13, WEB-14, WEB-15, WEB-16, WEB-22
+
+**Success Criteria** (what must be TRUE):
+1. Browser displays two-panel layout: lecture panel (left ~40%) and chat panel (right ~60%)
+2. LecturePanel renders LECTURE.md content as formatted markdown with syntax-highlighted code blocks
+3. LecturePanel automatically fetches new content when WebSocket receives "lecture-updated" event
+4. ChatPanel displays streaming Claude responses character-by-character as they arrive via SSE
+5. ChatPanel shows command pills (buttons) above or below chat input
+6. Command pills update based on current learning phase: idle shows new-topic, lecture shows hint/review/quiz, exercise shows hint/stuck/review, review shows done/hint
+7. Top bar displays course selector dropdown listing all available courses
+8. Top bar shows current course name and last active timestamp as progress indicator
+9. All markdown rendered anywhere in the UI is sanitized with DOMPurify to prevent XSS attacks
+
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 10 to break down)
+- [ ] 10-01-PLAN.md — Implement React client with LecturePanel, ChatPanel, WebSocket hook, and DOMPurify sanitization
 
-### Phase 11: give hint with keyword to googling or research. if possible some useful conference to help user figure out them self
+---
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+### Phase 11: Integration
+
+**Goal:** CLI web command launches server, production build creates optimized bundle, Express serves static files in production mode.
+
 **Depends on:** Phase 10
-**Plans:** 0 plans
+
+**Requirements:** WEB-17, WEB-18, WEB-19, WEB-20, WEB-21
+
+**Success Criteria** (what must be TRUE):
+1. Running `npx course-professor web` in CLI starts the Express server and opens web UI
+2. `npx course-professor web 8080` starts server on port 8080 instead of default 3000
+3. Web UI reads and writes to the same `courses/` directory that the CLI uses (no separate data store)
+4. Running `npm run build` in project root creates optimized React bundle in `client/dist/`
+5. When NODE_ENV=production, Express serves static React build from `client/dist/` instead of proxying to Vite dev server
+
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 11 to break down)
+- [ ] 11-01-PLAN.md — Implement CLI web command, production build, and static file serving
