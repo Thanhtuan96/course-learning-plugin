@@ -5,7 +5,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SUPPORTED_AGENTS = ['claude', 'opencode', 'gemini', 'agent'];
+const SUPPORTED_AGENTS = ['claude', 'opencode', 'gemini', 'agent', 'cursor'];
 
 function detectAgent() {
   const detected = [];
