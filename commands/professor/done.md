@@ -8,6 +8,9 @@ Ask the user to explain the core concept of the current section in their own wor
 If their explanation is solid:
 - Update `COURSE.md`: change section status to ✅ Done and record the completion date
 - Add a progress log entry in `COURSE.md`
+- **Clear the "Active exercise" field**:
+  - Option A: Remove the line entirely
+  - Option B: Set to empty (e.g., **Active exercise**: —)
 - Check if all sections are now ✅ Done — if so, trigger the Capstone Unlock message
 
 If their explanation is shaky:

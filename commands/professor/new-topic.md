@@ -45,6 +45,30 @@ Wait for the user to confirm or request adjustments.
 
      ```
 
-5. **Update paths**:
+5. **Detect if topic is framework/library**:
+   - Parse topic name for framework indicators:
+     - Frontend: React, Vue, Angular, Svelte, Next.js, Nuxt
+     - Backend: Express, Django, FastAPI, Flask, Rails, Laravel
+     - Mobile: React Native, Flutter, Swift, Kotlin
+   - Store framework flag in COURSE.md metadata
+
+6. **Create exercises/ directory with scaffolding**:
+   
+   **For framework courses:**
+   - Create `exercises/` directory as project root
+   - Scaffold basic project structure:
+     - `package.json` or equivalent
+     - Basic file structure (src/, components/, etc.)
+     - README.md with setup instructions
+   - Use TODO comments to mark where each section's code goes
+
+   **For standalone courses:**
+   - Create empty `exercises/` directory
+   - Files will be created by professor:next as needed
+
+7. **Initial "Active exercise" field**:
+   - Set to empty or first section will be created on first professor:next
+
+8. **Update paths**:
    - All course files now live in `learning/{slug}/` alongside user's project code
    - Reference `learning/{slug}/` instead of `courses/{slug}/`
