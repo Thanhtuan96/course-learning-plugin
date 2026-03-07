@@ -6,6 +6,8 @@ Five phases transform the existing professor-skill-v3 into a full Claude Code pl
 
 v1.1 adds Git Worktree-based courses - each technology learned gets its own git worktree, with learning files alongside the user's project code.
 
+v2.0 adds agent specialization, research-enhanced hints, and MCP documentation.
+
 ## Phases
 
 **Phase Numbering:**
@@ -24,8 +26,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 7: Git Worktree Courses** - Each technology learned = separate git worktree (completed 2026-03-07)
 - [x] **Phase 8: Auto-create Exercise Files** - Automatically create exercise files when professor:next is called (completed 2026-03-08)
 - [x] **Phase 9: Backend Foundation** - Express server with course API, chat API (SSE), WebSocket server (completed 2026-03-07)
-- [ ] **Phase 10: Client Components** - React split-pane UI with LecturePanel, ChatPanel, command pills
-- [ ] **Phase 11: Integration** - CLI web command, production build, static file serving
+- [ ] **Phase 10: Agent Specialization** - Improve and separate agents into specific fields (math, marketing, sales, coaching, bookkeeper, researcher)
+- [ ] **Phase 11: Research-Enhanced Hints** - Give hints with keyword to googling or research if possible + useful conferences
+- [ ] **Phase 12: MCP Documentation** - Document mcp.json for tools needed (notion, obsidian)
 
 ## Phase Details
 
@@ -119,7 +122,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11
+Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -133,8 +136,9 @@ Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7 �
 | 7. Git Worktree Courses | 1/1 | Complete    | 2026-03-07 |
 | 8. Auto-create Exercise Files | 1/1 | Complete    | 2026-03-08 |
 | 9. Backend Foundation | 0/1 | Complete    | 2026-03-07 |
-| 10. Client Components | 0/1 | Not started | - |
-| 11. Integration | 0/1 | Not started | - |
+| 10. Agent Specialization | 0/1 | Not started | - |
+| 11. Research-Enhanced Hints | 0/1 | Not started | - |
+| 12. MCP Documentation | 0/1 | Not started | - |
 
 ### Phase 6: Course Archive and Context Management
 
@@ -205,91 +209,61 @@ Plans:
 
 ---
 
-### Phase 10: Client Components
+### Phase 10: Agent Specialization
 
-**Goal:** React client with split-pane layout, lecture panel with markdown rendering, chat panel with streaming and context-aware command pills.
+**Goal:** Improve and separate agents into specific agent fields (math, marketing, sales, coaching, bookkeeper, researcher, etc.). Let each agent focus on one job and do it well. Agents can use tools or call other agents.
 
 **Depends on:** Phase 9
 
-**Requirements:** WEB-09, WEB-10, WEB-11, WEB-12, WEB-13, WEB-14, WEB-15, WEB-16, WEB-22
+**Requirements:** TBD
 
 **Success Criteria** (what must be TRUE):
-1. Browser displays two-panel layout: lecture panel (left ~40%) and chat panel (right ~60%)
-2. LecturePanel renders LECTURE.md content as formatted markdown with syntax-highlighted code blocks
-3. LecturePanel automatically fetches new content when WebSocket receives "lecture-updated" event
-4. ChatPanel displays streaming Claude responses character-by-character as they arrive via SSE
-5. ChatPanel shows command pills (buttons) above or below chat input
-6. Command pills update based on current learning phase: idle shows new-topic, lecture shows hint/review/quiz, exercise shows hint/stuck/review, review shows done/hint
-7. Top bar displays course selector dropdown listing all available courses
-8. Top bar shows current course name and last active timestamp as progress indicator
-9. All markdown rendered anywhere in the UI is sanitized with DOMPurify to prevent XSS attacks
+1. Each specialized agent has a clear focus area (e.g., math-agent, marketing-agent, researcher-agent)
+2. Agents can delegate to other agents when needed
+3. Agents have appropriate tools for their domain
 
-**Plans:** 1 plan
-
-Plans:
-- [ ] 10-01-PLAN.md — Implement React client with LecturePanel, ChatPanel, WebSocket hook, and DOMPurify sanitization
+**Plans:** To be planned
 
 ---
 
-### Phase 11: Integration
+### Phase 11: Research-Enhanced Hints
 
-**Goal:** CLI web command launches server, production build creates optimized bundle, Express serves static files in production mode.
+**Goal:** Enhance professor:hint and professor:stuck commands to provide keywords for googling or research, plus useful conferences/resources to help users figure out solutions themselves.
 
 **Depends on:** Phase 10
 
-**Requirements:** WEB-17, WEB-18, WEB-19, WEB-20, WEB-21
+**Requirements:** TBD
 
 **Success Criteria** (what must be TRUE):
-1. Running `npx course-professor web` in CLI starts the Express server and opens web UI
-2. `npx course-professor web 8080` starts server on port 8080 instead of default 3000
-3. Web UI reads and writes to the same `courses/` directory that the CLI uses (no separate data store)
-4. Running `npm run build` in project root creates optimized React bundle in `client/dist/`
-5. When NODE_ENV=production, Express serves static React build from `client/dist/` instead of proxying to Vite dev server
+1. Hints include relevant search keywords
+2. Hints suggest useful conferences, tutorials, or documentation
+3. Research suggestions are contextual to the current learning topic
 
-**Plans:** 1 plan
+**Plans:** To be planned
 
-Plans:
-- [ ] 11-01-PLAN.md — Implement CLI web command, production build, and static file serving
+---
 
-### Phase 12: mcp.json for tool that needed in this source (notion, obsidian, ....) document it
+### Phase 12: MCP Documentation
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Document mcp.json configuration for tools needed in this project (notion, obsidian, etc.)
+
 **Depends on:** Phase 11
-**Plans:** 0 plans
 
-Plans:
-- [ ] TBD (run /gsd:plan-phase 12 to break down)
+**Requirements:** TBD
+
+**Success Criteria** (what must be TRUE):
+1. mcp.json is documented with all required tools
+2. Notion MCP configuration is documented
+3. Obsidian MCP configuration is documented
+
+**Plans:** To be planned
 
 ---
 
 ## v2.0 Coverage
 
-All 22 v2.0 requirements mapped to phases:
-
-| Requirement | Phase |
-|-------------|-------|
-| WEB-01 | Phase 9 |
-| WEB-02 | Phase 9 |
-| WEB-03 | Phase 9 |
-| WEB-04 | Phase 9 |
-| WEB-05 | Phase 9 |
-| WEB-06 | Phase 9 |
-| WEB-07 | Phase 9 |
-| WEB-08 | Phase 9 |
-| WEB-09 | Phase 10 |
-| WEB-10 | Phase 10 |
-| WEB-11 | Phase 10 |
-| WEB-12 | Phase 10 |
-| WEB-13 | Phase 10 |
-| WEB-14 | Phase 10 |
-| WEB-15 | Phase 10 |
-| WEB-16 | Phase 10 |
-| WEB-22 | Phase 10 |
-| WEB-17 | Phase 11 |
-| WEB-18 | Phase 11 |
-| WEB-19 | Phase 11 |
-| WEB-20 | Phase 11 |
-| WEB-21 | Phase 11 |
-
-**Coverage:** 22/22 requirements mapped ✓
+v2.0 phases:
+- Phase 9: Backend Foundation
+- Phase 10: Agent Specialization
+- Phase 11: Research-Enhanced Hints
+- Phase 12: MCP Documentation
