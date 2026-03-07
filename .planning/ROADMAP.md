@@ -6,6 +6,8 @@ Five phases transform the existing professor-skill-v3 into a full Claude Code pl
 
 v1.1 adds Git Worktree-based courses - each technology learned gets its own git worktree, with learning files alongside the user's project code.
 
+v2.0 adds Client Components (React UI) and Integration (CLI web command).
+
 ## Phases
 
 **Phase Numbering:**
@@ -24,8 +26,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 7: Git Worktree Courses** - Each technology learned = separate git worktree (completed 2026-03-07)
 - [x] **Phase 8: Auto-create Exercise Files** - Automatically create exercise files when professor:next is called (completed 2026-03-08)
 - [x] **Phase 9: Backend Foundation** - Express server with course API, chat API (SSE), WebSocket server (completed 2026-03-07)
-- [ ] **Phase 10: Client Components** - React split-pane UI with LecturePanel, ChatPanel, command pills
-- [ ] **Phase 11: Integration** - CLI web command, production build, static file serving
+
+## Milestones
+
+**v1.1 (Current):** Phase 1-9 (complete)
+**v2.0 (Pending):** Phase 13-14
 
 ## Phase Details
 
@@ -118,8 +123,14 @@ Plans:
 
 ## Progress
 
+**Current Milestone:** v1.1 (in progress)
+**v2.0:** Pending
+
 **Execution Order:**
-Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11
+Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 (v1.1 complete)
+v2.0 phases: 13 → 14
+
+### v1.1 Phases
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -132,9 +143,14 @@ Phases execute in numeric order: 1 → 1b → 2 → 3 → 4 → 5 → 6 → 7 �
 | 6. Course Archive and Context | 1/1 | Complete    | 2026-03-07 |
 | 7. Git Worktree Courses | 1/1 | Complete    | 2026-03-07 |
 | 8. Auto-create Exercise Files | 1/1 | Complete    | 2026-03-08 |
-| 9. Backend Foundation | 0/1 | Complete    | 2026-03-07 |
-| 10. Client Components | 0/1 | Not started | - |
-| 11. Integration | 0/1 | Not started | - |
+| 9. Backend Foundation | 1/1 | Complete    | 2026-03-07 |
+
+### v2.0 Phases (Pending)
+
+| Phase | Plans Complete | Status |
+|-------|----------------|--------|
+| 13. Client Components | 0/1 | Not started |
+| 14. Integration | 0/1 | Not started |
 
 ### Phase 6: Course Archive and Context Management
 
@@ -205,7 +221,7 @@ Plans:
 
 ---
 
-### Phase 10: Client Components
+### Phase 13: Client Components
 
 **Goal:** React client with split-pane layout, lecture panel with markdown rendering, chat panel with streaming and context-aware command pills.
 
@@ -227,15 +243,15 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 10-01-PLAN.md — Implement React client with LecturePanel, ChatPanel, WebSocket hook, and DOMPurify sanitization
+- [ ] 13-01-PLAN.md — Implement React client with LecturePanel, ChatPanel, WebSocket hook, and DOMPurify sanitization
 
 ---
 
-### Phase 11: Integration
+### Phase 14: Integration
 
 **Goal:** CLI web command launches server, production build creates optimized bundle, Express serves static files in production mode.
 
-**Depends on:** Phase 10
+**Depends on:** Phase 13
 
 **Requirements:** WEB-17, WEB-18, WEB-19, WEB-20, WEB-21
 
@@ -249,47 +265,14 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 11-01-PLAN.md — Implement CLI web command, production build, and static file serving
-
-### Phase 12: mcp.json for tool that needed in this source (notion, obsidian, ....) document it
-
-**Goal:** [To be planned]
-**Requirements**: TBD
-**Depends on:** Phase 11
-**Plans:** 0 plans
-
-Plans:
-- [ ] TBD (run /gsd:plan-phase 12 to break down)
+- [ ] 14-01-PLAN.md — Implement CLI web command, production build, and static file serving
 
 ---
 
 ## v2.0 Coverage
 
-All 22 v2.0 requirements mapped to phases:
+v2.0 phases:
+- Phase 13: Client Components
+- Phase 14: Integration
 
-| Requirement | Phase |
-|-------------|-------|
-| WEB-01 | Phase 9 |
-| WEB-02 | Phase 9 |
-| WEB-03 | Phase 9 |
-| WEB-04 | Phase 9 |
-| WEB-05 | Phase 9 |
-| WEB-06 | Phase 9 |
-| WEB-07 | Phase 9 |
-| WEB-08 | Phase 9 |
-| WEB-09 | Phase 10 |
-| WEB-10 | Phase 10 |
-| WEB-11 | Phase 10 |
-| WEB-12 | Phase 10 |
-| WEB-13 | Phase 10 |
-| WEB-14 | Phase 10 |
-| WEB-15 | Phase 10 |
-| WEB-16 | Phase 10 |
-| WEB-22 | Phase 10 |
-| WEB-17 | Phase 11 |
-| WEB-18 | Phase 11 |
-| WEB-19 | Phase 11 |
-| WEB-20 | Phase 11 |
-| WEB-21 | Phase 11 |
-
-**Coverage:** 22/22 requirements mapped ✓
+**Coverage:** v2.0 includes Client Components (Phase 13) and Integration (Phase 14)
