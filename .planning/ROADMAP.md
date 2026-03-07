@@ -180,3 +180,13 @@ Plans:
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 9 to break down)
+
+### Phase 10: improve and separate @agents/ into specific agent fields (ex: math, marketing, sales, coaching, bookkeeper, etc) or researcher agent - let them focus on one job and do well, and they can use tools or other agents
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 9
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 10 to break down)
