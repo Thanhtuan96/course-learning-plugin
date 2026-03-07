@@ -52,7 +52,7 @@ Requirements for milestone v1.0. Each maps to roadmap phases.
 
 ### Agent Support (Phase 9)
 
-- [ ] **AGENT-01**: MCP server implementation with @modelcontextprotocol/sdk
+- [x] **AGENT-01**: MCP server implementation with @modelcontextprotocol/sdk
 - [ ] **AGENT-02**: Core command tools (new-topic, next, done, progress, syllabus) as MCP tools
 - [ ] **AGENT-03**: Cross-agent configuration documented for Cursor and VS Code
 - [ ] **AGENT-04**: Agent detection via environment variables for different AI agents

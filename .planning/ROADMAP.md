@@ -251,6 +251,16 @@ Plans:
 Plans:
 - [ ] 11-01-PLAN.md — Implement CLI web command, production build, and static file serving
 
+### Phase 12: mcp.json for tool that needed in this source (notion, obsidian, ....) document it
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 11
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 12 to break down)
+
 ---
 
 ## v2.0 Coverage
