@@ -6,7 +6,7 @@ description: >
   (professor:new-topic, professor:next, professor:done, professor:review,
   professor:hint, professor:stuck, professor:discuss, professor:quiz,
   professor:syllabus, professor:progress, professor:capstone, professor:capstone-review,
-  professor:export, professor:note),
+  professor:export, professor:note, professor:archive),
   when user says "teach me X", "I want to learn X", "create a course for X",
   "help me understand X", or asks for code review on a learning topic.
   At every session start, reads courses/ in the current working directory to restore
@@ -535,6 +535,82 @@ Export course content to Notion or Obsidian via MCP.
 
 7. **If Cancel selected**:
    > "Export cancelled. Your course remains here. Run professor:export again anytime."
+
+---
+
+### `professor:archive`
+
+Archive completed course with full learning context while leaving code exercises behind.
+
+**Steps:**
+
+1. **Check for active course** — Read courses/ directory, require exactly one active course
+   - If no course: "No active course found. There's nothing to archive."
+
+2. **Read source files** — Load content to be archived:
+   - COURSE.md (syllabus + progress)
+   - NOTES.md (if exists)
+   - CAPSTONE.md (project brief)
+
+3. **Check for incomplete sections** — Parse COURSE.md for ⬜ status
+   - Count incomplete sections
+   - If incomplete sections exist: Use AskUserQuestion:
+     > "You have X incomplete sections. Archive anyway?"
+     > Options: "Yes, archive" / "No, go back"
+   - If user chooses "No, go back": Exit gracefully
+
+4. **Generate SUMMARY.md** — Create comprehensive retrospective with format:
+   ```markdown
+   # Learning Summary: {Topic Name}
+
+   ## Course Overview
+   - Level: {level}
+   - Started: {start_date}
+   - Archived: {current_date}
+
+   ## Sections Completed
+   - Section 1: {Title} ({date})
+   ...
+
+   ## Key Concepts Learned
+   {extracted from progress log}
+
+   ## Notes
+   {summary of NOTES.md content or "No notes recorded"}
+
+   ## Capstone Project
+   {capstone title} - {completed/not completed}
+   ```
+
+5. **Determine archive path**:
+   - Primary: `.course_archive/{slug}/`
+   - If exists: `.course_archive/{slug}-{YYYY-MM-DD}/`
+
+6. **Create archive directory** — Use Bash mkdir -p
+
+7. **Write archive files**:
+   - COURSE.md
+   - NOTES.md (if exists)
+   - CAPSTONE.md
+   - SUMMARY.md
+
+8. **Delete original course folder** — Use Bash rm -rf courses/{slug}/
+   - DO NOT delete exercises/ subfolder if it exists in the original location
+   - The exercises/ folder should remain at courses/{slug}/exercises/ after the course folder is deleted
+
+9. **Success message**:
+   > "Course archived! Your learning journey is saved to:
+   > - .course_archive/{slug}/
+   > 
+   > The exercises/ folder remains in place at courses/{slug}/exercises/.
+   > 
+   > Start a new course anytime with professor:new-topic."
+
+**Rules:**
+- Never delete the exercises/ folder
+- Never include LECTURE.md in archive
+- Always auto-version if archive already exists
+- Generate SUMMARY.md from existing content
 
 ---
 
