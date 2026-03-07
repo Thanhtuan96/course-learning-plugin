@@ -190,3 +190,13 @@ Plans:
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 10 to break down)
+
+### Phase 11: give hint with keyword to googling or research. if possible some useful conference to help user figure out them self
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 10
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 11 to break down)
