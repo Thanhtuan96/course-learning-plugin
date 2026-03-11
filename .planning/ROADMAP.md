@@ -161,7 +161,7 @@ v2.0: 13 → 14 → 15 → 16
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 13. Client Components | 2/2 | Complete   | 2026-03-11 |
-| 14. Integration | 0/1 | Not started | - |
+| 14. Integration | 1/1 | Planned    | - |
 | 15. Retention Layer | 0/1 | Not started | - |
 | 16. Sharing and Templates | 0/1 | Not started | - |
 
