@@ -32,6 +32,7 @@ This will auto and set up the plugin-detect your agent. Or specify manually:
 
 ```bash
 npx course-professor setup claude   # Claude Code
+npx course-professor setup cursor   # Cursor
 npx course-professor setup opencode # OpenCode
 npx course-professor setup gemini   # Gemini CLI
 ```
@@ -157,6 +158,25 @@ Replace `your-obsidian-rest-api-key-here` with the API key from Step 1. Update `
 | `professor:capstone-review` | Capstone | Submit your capstone work for Socratic review |
 | `professor:note` | Notes & Export | Save a note to your course notes file |
 | `professor:export` | Notes & Export | Export your notes and progress to Notion or Obsidian |
+
+---
+
+## Web UI
+
+Run a local web interface for a richer learning experience:
+
+```bash
+npx course-professor web
+```
+
+The CLI will auto-detect your agent and use its API key. If no key is found, it will prompt you to set one.
+
+Opens at `http://localhost:3000` with:
+- **Lecture panel** — current section rendered with syntax highlighting
+- **Chat panel** — Socratic conversation with Professor, streamed in real-time
+- **Command pills** — context-aware shortcuts so you don't need to memorize commands
+
+The web UI reads and writes the same `courses/` files as the CLI — switch between them freely.
 
 ---
 
