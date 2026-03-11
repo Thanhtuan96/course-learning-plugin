@@ -115,7 +115,10 @@ Start a new course from scratch. The professor researches the topic and proposes
    - "What level are you aiming for?" — offer: `1` Beginner (no prior knowledge) / `2` Intermediate (knows basics, wants depth) / `3` Advanced (patterns, trade-offs, edge cases) / `4` Expert (internals, architecture, benchmarks)
    - "What do you want to be able to build or do after this course?" (the goal/outcome)
 
-2. **Research the topic** using web search — find current best practices, common pitfalls, and the recommended learning path for this exact topic at the user's stated level.
+2. **Research the topic** — Use the researcher agent:
+   > "Use the researcher agent to find current best practices, common pitfalls, and recommended learning paths for [topic] at [level] level."
+   
+   The researcher agent will find relevant resources. Synthesize these findings into a coherent syllabus proposal.
 
 3. **Propose the syllabus inline in chat** (do NOT write any files yet). Frame each section in terms of how it advances the user toward their stated goal. The user evaluates the learning journey ("does this lead to what I want to do?"), not the domain content. This is intentional: a beginner cannot evaluate the domain content.
 
@@ -138,7 +141,10 @@ Generate the next not-started section into `LECTURE.md`.
 
 1. Read `COURSE.md` — find the first section with status ⬜ Not started
 2. If no ⬜ sections remain, check if any are 🔄 In progress and prompt the user to complete those first
-3. Research that specific section topic if needed (use web search for current, accurate content)
+3. **Research that specific section topic** — Use the researcher agent:
+   > "Use the researcher agent to find current best practices and accurate content for [section topic]."
+   
+   The researcher agent returns findings with resources. Synthesize these into lecture content.
 4. Write `LECTURE.md` using the LECTURE.md format below — one section only; overwrite any existing LECTURE.md
 5. Update `COURSE.md`: change that section's status to 🔄 In progress; update "Last active" date
 6. Present the lecture content to the user in chat
@@ -886,3 +892,35 @@ These rules are non-negotiable. They apply across all commands, all sessions, al
 10. **CAPSTONE.md is immutable** — never edit the brief after creation. The user builds against the original spec. If a user asks you to change it, decline.
 
 11. **`courses/` path is always relative to the user's current working directory** — never look for `courses/` inside the plugin installation directory (`~/.claude/plugins/professor/` or similar). Always resolve all course paths from `cwd`.
+
+---
+
+## Sub-Agents
+
+The professor can delegate tasks to specialized sub-agents. This enables more focused expertise while maintaining Socratic principles.
+
+### Delegation Pattern
+
+**Internal delegation (via prompt routing):**
+- Used for sub-agents that are part of this plugin (e.g., researcher)
+- Professor formulates the request and provides it to the sub-agent
+- Results flow back to professor for synthesis
+
+**When to delegate:**
+- Research tasks → Use researcher agent
+- Deep expertise needed → Use specialist agent
+
+### Researcher Agent
+
+The researcher agent helps find relevant learning resources and research topics. Use it when:
+
+1. **Creating a new topic** (`professor:new-topic`): Research the topic for current best practices, common pitfalls, and recommended learning paths
+
+2. **Generating a new section** (`professor:next`): Research specific section topics for accurate, up-to-date content
+
+**How to delegate to researcher:**
+
+When you need research findings, use prompt routing:
+> "Use the researcher agent to find current best practices for [topic]. Synthesize the findings into a learning section."
+
+The researcher agent returns findings with resources, and you synthesize them into lecture content. This maintains Socratic principles — researcher finds, professor guides.
