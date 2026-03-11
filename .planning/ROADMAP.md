@@ -151,7 +151,7 @@ v2.0: 13 → 14 → 15 → 16
 | 7. Git Worktree Courses | 1/1 | Complete    | 2026-03-07 |
 | 8. Auto-create Exercise Files | 1/1 | Complete    | 2026-03-08 |
 | 9. Agent Support (Cursor) | 1/1 | Complete    | 2026-03-08 |
-| 10. Agent Specialization | 0/3 | Planned    |  |
+| 10. Agent Specialization | 2/3 | In Progress | 2026-03-11 |
 | 11. Research-Enhanced Hints | 0/1 | Not started | - |
 | 12. MCP Documentation | 0/1 | Not started | - |
 
@@ -241,11 +241,11 @@ Plans:
 2. Agents can delegate to other agents when needed
 3. Agents have appropriate tools for their domain
 
-**Plans:** 0/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
-- [ ] 10-01-PLAN.md — Create researcher agent and register in plugin.json
-- [ ] 10-02-PLAN.md — Add delegation from professor to researcher agent + CLI support
+- [x] 10-01-PLAN.md — Create researcher agent and register in plugin.json
+- [x] 10-02-PLAN.md — Add delegation from professor to researcher agent + CLI support
 - [ ] 10-03-PLAN.md — Create researcher agent templates
 
 ---
