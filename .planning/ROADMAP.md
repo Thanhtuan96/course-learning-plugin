@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: Agent Specialization** - Improve and separate agents into specific fields (math, marketing, sales, coaching, bookkeeper, researcher) (completed 2026-03-11)
 - [x] **Phase 11: Research-Enhanced Hints** - Give hints with keyword to googling or research + useful conferences (completed 2026-03-11)
 - [x] **Phase 12: MCP Documentation** - Document mcp.json for tools needed (notion, obsidian) (verified in README.md)
-- [ ] **Phase 13: Client Components** - React split-pane UI with LecturePanel, ChatPanel, command pills (v2.0)
+- [x] **Phase 13: Client Components** - React split-pane UI with LecturePanel, ChatPanel, command pills (v2.0)
 - [ ] **Phase 14: Integration** - CLI web command, production build, static file serving (v2.0)
 - [ ] **Phase 15: Retention Layer** - SCHEDULE.md, professor:recall, professor:schedule, streak tracking, time tracking (v2.0)
 - [ ] **Phase 16: Sharing and Templates** - professor:template-export, professor:template-import, course sharing workflow (v2.0)
@@ -160,7 +160,7 @@ v2.0: 13 → 14 → 15 → 16
 
 | Phase | Plans Complete | Status |
 |-------|----------------|--------|
-| 13. Client Components | 0/1 | Not started |
+| 13. Client Components | 0/2 | Not started |
 | 14. Integration | 0/1 | Not started |
 | 15. Retention Layer | 0/1 | Not started |
 | 16. Sharing and Templates | 0/1 | Not started |
@@ -308,10 +308,11 @@ Plans:
 8. Top bar shows current course name and last active timestamp as progress indicator
 9. All markdown rendered anywhere in the UI is sanitized with DOMPurify to prevent XSS attacks
 
-**Plans:** 1 plan
+**Plans:** 2/2 plans complete
 
 Plans:
-- [ ] 13-01-PLAN.md — Implement React client with LecturePanel, ChatPanel, WebSocket hook, and DOMPurify sanitization
+- [x] 13-01-PLAN.md — Set up React client project infrastructure with Vite, dependencies, CSS theme, API client, and markdown utilities
+- [x] 13-02-PLAN.md — Implement all React components (Header, SplitPane, LecturePanel, ChatPanel, CommandPills, MobileTabSwitcher), hooks (useWebSocket, useSSE), and integrate with backend
 
 ---
 
