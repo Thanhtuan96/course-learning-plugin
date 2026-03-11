@@ -6,6 +6,10 @@
     {
       "name": "professor",
       "file": "agents/professor.md"
+    },
+    {
+      "name": "researcher",
+      "file": "agents/researcher.md"
     }
   ],
   "commands": [
