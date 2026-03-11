@@ -160,7 +160,7 @@ v2.0: 13 → 14 → 15 → 16
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 13. Client Components | 1/2 | In Progress | 2026-03-11 |
+| 13. Client Components | 2/2 | Complete   | 2026-03-11 |
 | 14. Integration | 0/1 | Not started | - |
 | 15. Retention Layer | 0/1 | Not started | - |
 | 16. Sharing and Templates | 0/1 | Not started | - |
@@ -334,7 +334,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 14-01-PLAN.md — Implement CLI web command, production build, and static file serving
+- [x] 14-01-PLAN.md — Implement CLI web command, production build, and static file serving
 
 ### Phase 15: Retention Layer
 
