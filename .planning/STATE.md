@@ -41,7 +41,7 @@ See: .planning/PROJECT.md
 - CLI supports multiple agent setups
 
 ### Pending Todos
-- 3 todos (see .planning/todos/pending/)
+- 4 todos (see .planning/todos/pending/)
 
 ## Session Log
 
