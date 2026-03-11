@@ -161,6 +161,24 @@ Replace `your-obsidian-rest-api-key-here` with the API key from Step 1. Update `
 
 ---
 
+## Web UI
+
+Run a local web interface for a richer learning experience:
+
+```bash
+export ANTHROPIC_API_KEY=your-key
+npx course-professor web
+```
+
+Opens at `http://localhost:3000` with:
+- **Lecture panel** — current section rendered with syntax highlighting
+- **Chat panel** — Socratic conversation with Professor, streamed in real-time
+- **Command pills** — context-aware shortcuts so you don't need to memorize commands
+
+The web UI reads and writes the same `courses/` files as the CLI — switch between them freely.
+
+---
+
 ## Scope and Limitations
 
 - **Claude Code only.** This plugin targets Claude Code v1.0. Support for other AI platforms, Claude.ai, or multi-agent frameworks is deferred — not in scope for this release.
