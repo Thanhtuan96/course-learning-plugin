@@ -33,6 +33,7 @@ See: .planning/PROJECT.md
 - v1.1 completed: Git worktree courses, auto-create exercise files
 - Phase 10: Agent specialization - professor delegates to researcher
 - Phase 11: Research-enhanced hints - keywords for googling/research
+- Phase 17: Auto generate exercise files that user can work on directly
 
 ### v1.1 Goals
 - Separate agents for specific tasks (researcher)
@@ -40,7 +41,7 @@ See: .planning/PROJECT.md
 - CLI supports multiple agent setups
 
 ### Pending Todos
-- 2 todos (see .planning/todos/pending/)
+- 3 todos (see .planning/todos/pending/)
 
 ## Session Log
 
@@ -53,3 +54,4 @@ See: .planning/PROJECT.md
 - 2026-03-11: Completed plan 10-02 - Researcher delegation implementation
 - 2026-03-11: Completed plan 10-03 - Researcher agent template
 - 2026-03-11: Completed plan 11-01 - Research-enhanced hints with keywords
+- 2026-03-11: Added Phase 17 - Auto generate exercise files
