@@ -38,6 +38,9 @@ See: .planning/PROJECT.md
 - Professor can delegate research to researcher agent
 - CLI supports multiple agent setups
 
+### Pending Todos
+- 2 todos (see .planning/todos/pending/)
+
 ## Session Log
 
 - 2026-03-07: v1.0 milestone complete - all features shipped
