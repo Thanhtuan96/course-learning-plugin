@@ -41,13 +41,16 @@ Commands:
   setup [agent]     Set up Professor for a specific agent
   init              Auto-detect and set up
   list              List supported agents
+  web [port]        Start local web UI (default port: 3000)
   help              Show this help message
 
 Examples:
   npx course-professor init              # Auto-detect and setup
   npx course-professor setup claude      # Setup for Claude Code
-  npx course-professor setup opencode     # Setup for OpenCode
-  npx course-professor setup gemini       # Setup for Gemini CLI
+  npx course-professor setup opencode    # Setup for OpenCode
+  npx course-professor setup gemini      # Setup for Gemini CLI
+  npx course-professor web               # Start web UI on port 3000
+  npx course-professor web 4000          # Start on port 4000
 
 Supported agents: ${SUPPORTED_AGENTS.join(', ')}
   `.trim());
@@ -190,6 +193,68 @@ const args = process.argv.slice(2);
 const command = args[0] || 'help';
 
 switch (command) {
+  case 'web': {
+    const { execSync } = await import('child_process');
+    const webDir = join(__dirname, '..', 'web');
+
+    if (!existsSync(webDir)) {
+      console.error('❌ Web UI not found. Make sure the plugin is fully installed.');
+      process.exit(1);
+    }
+
+    // Check for node_modules
+    if (!existsSync(join(webDir, 'node_modules'))) {
+      console.log('📦 Installing web dependencies...');
+      try {
+        execSync('npm install', { cwd: webDir, stdio: 'inherit' });
+      } catch {
+        console.error('❌ Failed to install web dependencies.');
+        process.exit(1);
+      }
+    }
+
+    // Check for client node_modules
+    const clientDir = join(webDir, 'client');
+    if (existsSync(clientDir) && !existsSync(join(clientDir, 'node_modules'))) {
+      console.log('📦 Installing client dependencies...');
+      try {
+        execSync('npm install', { cwd: clientDir, stdio: 'inherit' });
+      } catch {
+        console.error('❌ Failed to install client dependencies.');
+        process.exit(1);
+      }
+    }
+
+    // Check for API key (auto-detect from common env vars)
+    const apiKey = process.env.ANTHROPIC_API_KEY 
+      || process.env.CLAUDE_API_KEY 
+      || process.env.OPENAI_API_KEY;
+    
+    if (!apiKey) {
+      // Detect agent for helpful message
+      const detected = detectAgent();
+      console.error('❌ ANTHROPIC_API_KEY not set.');
+      console.log('   Run: export ANTHROPIC_API_KEY=your-key');
+      console.log('   Or: export CLAUDE_API_KEY=your-key');
+      console.log(`   Detected agent: ${detected[0] || 'none'}`);
+      console.log('   Then: npx course-professor web');
+      process.exit(1);
+    }
+
+    // Optional port argument
+    const port = args[1] || process.env.PORT || '3000';
+    process.env.PORT = port;
+    process.env.COURSES_DIR = process.env.COURSES_DIR || './courses';
+
+    console.log(`
+📚 Starting Professor Web UI on port ${port}...
+   `);
+    
+    // Start the server
+    await import(join(webDir, 'server.js'));
+    break;
+  }
+
   case 'init':
   case 'setup':
     printBanner();
