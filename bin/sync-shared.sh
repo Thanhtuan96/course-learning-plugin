@@ -10,8 +10,8 @@ echo "Syncing root → shared/ ..."
 cp commands/professor/*.md shared/commands/professor/
 echo "✓ commands/professor/ synced"
 
-# Sync agent
-cp agents/professor.md shared/agents/professor.md
+# Sync agents
+cp agents/*.md shared/agents/professor.md
 echo "✓ agents/professor.md synced"
 
 # Sync hooks

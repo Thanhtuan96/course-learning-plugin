@@ -53,33 +53,58 @@ function displayTokenWarning(tokenCount) {
 
 /**
  * Find the most recently modified COURSE.md file
+ * 
+ * Priority:
+ * 1. First check learning/ directory (new worktree courses)
+ * 2. Then check courses/ directory (legacy courses)
+ * Returns the most recently modified COURSE.md from either location
  */
 function findMostRecentCourse() {
+  const learningDir = path.join(process.cwd(), 'learning');
   const coursesDir = path.join(process.cwd(), 'courses');
-  
-  // Check if courses directory exists
-  if (!fs.existsSync(coursesDir)) {
-    console.warn('PreCompact: No courses directory found. Skipping session save.');
-    return null;
-  }
   
   let mostRecentFile = null;
   let mostRecentTime = 0;
   
-  // Scan for COURSE.md files in subdirectories
-  const entries = fs.readdirSync(coursesDir, { withFileTypes: true });
-  
-  for (const entry of entries) {
-    if (entry.isDirectory()) {
-      const coursePath = path.join(coursesDir, entry.name, 'COURSE.md');
-      if (fs.existsSync(coursePath)) {
-        const stats = fs.statSync(coursePath);
-        if (stats.mtimeMs > mostRecentTime) {
-          mostRecentTime = stats.mtimeMs;
-          mostRecentFile = coursePath;
+  // Helper function to scan a directory for COURSE.md files
+  function scanForCourses(dir) {
+    if (!fs.existsSync(dir)) {
+      return;
+    }
+    
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      
+      for (const entry of entries) {
+        if (entry.isDirectory()) {
+          const coursePath = path.join(dir, entry.name, 'COURSE.md');
+          if (fs.existsSync(coursePath)) {
+            try {
+              const stats = fs.statSync(coursePath);
+              if (stats.mtimeMs > mostRecentTime) {
+                mostRecentTime = stats.mtimeMs;
+                mostRecentFile = coursePath;
+              }
+            } catch (err) {
+              // Skip files that can't be accessed
+              console.warn(`PreCompact: Could not access ${coursePath}: ${err.message}`);
+            }
+          }
         }
       }
+    } catch (err) {
+      console.warn(`PreCompact: Could not scan directory ${dir}: ${err.message}`);
     }
+  }
+  
+  // First check learning/ directory (priority for new worktree courses)
+  scanForCourses(learningDir);
+  
+  // Then check courses/ directory (legacy fallback)
+  scanForCourses(coursesDir);
+  
+  if (!mostRecentFile) {
+    console.warn('PreCompact: No courses directory found. Skipping session save.');
   }
   
   return mostRecentFile;
