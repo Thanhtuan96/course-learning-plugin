@@ -6,13 +6,13 @@
       "Bash(cd)",
       "Bash(pwd)",
       "Read",
-      "Write",
       "Glob",
       "Grep",
       "WebFetch"
     ],
     "deny": [
-      "Bash(rm -rf *)"
+      "Bash(rm -rf *)",
+      "Write"
     ]
   }
 }
