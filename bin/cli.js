@@ -3,6 +3,7 @@
 import { existsSync, mkdirSync, symlinkSync, readFileSync, writeFileSync, readdirSync, cpSync, statSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createInterface } from 'readline';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SUPPORTED_AGENTS = ['claude', 'opencode', 'gemini', 'agent', 'cursor', 'researcher'];
@@ -153,40 +154,67 @@ Course files will be created in: ./courses/
   `.trim());
 }
 
+function askQuestion(rl, prompt) {
+  return new Promise(resolve => rl.question(prompt, resolve));
+}
+
+async function promptAgentSelection(agents) {
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+
+  rl.on('SIGINT', () => {
+    console.log('\n\nAborted.');
+    rl.close();
+    process.exit(0);
+  });
+
+  let choice;
+  while (true) {
+    const answer = (await askQuestion(rl, '\n> ')).trim();
+    const num = parseInt(answer, 10);
+    if (!isNaN(num) && num >= 1 && num <= agents.length) {
+      choice = agents[num - 1];
+      break;
+    } else if (SUPPORTED_AGENTS.includes(answer.toLowerCase())) {
+      choice = answer.toLowerCase();
+      break;
+    }
+    console.log(`Invalid choice. Enter 1-${agents.length} or a supported agent name (${SUPPORTED_AGENTS.join(', ')}).`);
+  }
+  rl.close();
+  return choice;
+}
+
 async function init() {
   const detected = detectAgent();
-  
+
   if (detected.length === 0) {
-    console.log(`
-❓ No agent detected automatically.
+    console.log(`❓ No agent detected automatically.\n`);
+    console.log('Which agent would you like to set up?');
+    console.log('Enter a number or agent name:\n');
+    SUPPORTED_AGENTS.forEach((agent, i) => {
+      console.log(`  ${i + 1}. ${agent}`);
+    });
 
-Supported agents: ${SUPPORTED_AGENTS.join(', ')}
-
-Usage:
-  npx course-professor setup <agent>
-
-Example:
-  npx course-professor setup claude
-    `.trim());
+    const choice = await promptAgentSelection(SUPPORTED_AGENTS);
+    await setupAgent(choice);
     return;
   }
-  
+
   if (detected.length === 1) {
     console.log(`🔍 Detected: ${detected[0]}\n`);
     await setupAgent(detected[0]);
     return;
   }
-  
+
   console.log(`🔍 Multiple agents detected: ${detected.join(', ')}\n`);
-  
   console.log('Which agent would you like to set up?');
-  console.log(`Enter a number or agent name:`);
-  
+  console.log('Enter a number or agent name:\n');
   detected.forEach((agent, i) => {
     console.log(`  ${i + 1}. ${agent}`);
   });
-  
-  console.log('\nOr run: npx course-professor setup <agent>');
+
+  const choice = await promptAgentSelection(detected);
+  await setupAgent(choice);
 }
 
 const args = process.argv.slice(2);
